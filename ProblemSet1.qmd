@@ -5,5 +5,104 @@ format: html
 ---
 ## GitHub Repository
 
-This is the link to my GitHub repository <>
+This is the link to my GitHub repository <https://github.com/rajvijasani/STATS506-Problem-Set-1.git>
 
+## Problem 1 - Wine Data
+```{r}
+setwd("E:/UM/STATS 506/Repos/STATS506-Problem-Set-1")
+
+# Assigning column names for the data frame
+colNames <- c(
+  "wineClass",
+  "alcohol",
+  "malicAcid",
+  "ash",
+  "alcalinityOfAsh",
+  "magnesium",
+  "totalPhenols",
+  "flavanoids",
+  "nonflavanoidPhenols",
+  "proanthocyanins",
+  "colorIntensity",
+  "hue",
+  "odOfDilutedWines",
+  "proline"
+)
+
+# Importing the data set
+wine <- read.table("data/wine.data", sep = ",", col.names = colNames)
+
+# Checking number of data samples for each class of wine
+classCount <- table(wine$wineClass)
+print(classCount)
+```
+The number of data samples for each class of wine are the same as mentioned in the wine.names file.
+```{r}
+# Calculating correlation of alcohol content and color intensity
+corRel <- cor(wine$alcohol, wine$colorIntensity)
+print(corRel)
+```
+The correlation coefficient (r) between alcohol content and color intensity of wine is 0.5463642. As r is positive, we can say that there is a positive correlation, i.e. if one variable increases, the other also increases.
+```{r}
+# Spliting the data frame based on wine classes
+# This returns a list of 3 lists grouped on the 3 wine classes
+splitWine <- split(wine, wine$wineClass)
+
+# Using lapply to calculate correlation between alcohol and color intensity for each list generated above.
+#' Anonymous function to calculate correlation
+#' @param splitWineList list (subset of the original dataset) containing samples of same class 
+#' @return correlation coefficient between alcohol and color intensity from data in the given list
+corRelByClass <- lapply(splitWine, function(splitWineList) {
+  return(cor(splitWineList$alcohol, splitWineList$colorIntensity))
+})
+print(corRelByClass)
+```
+From the output, we can observe that class 1 of wine has the highest correlation while class 2 has the lowest correlation between alcohol content and color intensity.
+```{r}
+# Finding the index of row with highest value of color intensity
+maxColorIntensityIndex <- which.max(wine$colorIntensity)
+# Using the index to get corresponding alcohol content value
+print(wine$alcohol[maxColorIntensityIndex])
+```
+The alcohol content of the sample of wine with the highest color index is 14.34.
+```{r}
+# Counting the number of samples where proanthocyanins > ash
+counter = 0
+for (i in 1:nrow(wine)) {
+  if (wine$proanthocyanins[i] > wine$ash[i]) {
+    counter <- counter + 1
+  }
+}
+# Calculating the percentage
+percentageWine <- (counter / nrow(wine)) * 100
+print(percentageWine)
+```
+Therefore, approximately 8.43% of the samples have more proanthocyanins than ash.
+```{r}
+# Calculating average of each variable except wineClass
+overallAverage <- colMeans(wine[, -1])
+# Converting above obtained vector into a dataframe
+overallAverageDf <- as.data.frame(t(overallAverage), row.names = "Overall")
+# Calculating average of each variable grouped by wineClass
+groupAverage <- aggregate(. ~ wineClass, wine, mean)
+# Removing the wineClass column from the data frame
+groupAverage <- groupAverage[, -1]
+# Binding row-wise, the two dataframes obtained above
+averagesTable <- rbind(overallAverageDf, groupAverage)
+print(averagesTable)
+```
+The table above lists the overall as well group-wise averages for each variable.
+```{r}
+# Using the splitWine list created above to extract values of total phenol for each class
+# Pairwise t-test on class 1 and class 2
+test12 <- t.test(splitWine[[1]]$totalPhenols, splitWine[[2]]$totalPhenols)
+print(test12)
+# Pairwise t-test on class 1 and class 3
+test13 <- t.test(splitWine[[1]]$totalPhenols, splitWine[[3]]$totalPhenols)
+print(test13)
+# Pairwise t-test on class 2 and class 3
+test23 <- t.test(splitWine[[2]]$totalPhenols, splitWine[[3]]$totalPhenols)
+print(test23)
+```
+
+## Problem 2 - AskAManager.org Data
