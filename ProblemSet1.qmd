@@ -236,4 +236,89 @@ summary(salaryFinal$annualSalary)
 boxplot(salaryFinal$annualSalary, main = "Annual Salary")
 ```
 
-## Problem 3 - Palindromic Numbers 
+## Problem 3 - Palindromic Numbers
+```{r}
+#' Function to check if given input is Palindromic and output the reversed number
+#'
+#' @param num positive integer input
+#'
+#' @return named list with 2 elements, a logical "isPalindromic" indicating if input is a Palindrome, and a numeric "reversed" containting the reverse of input
+isPalindromic <- function(num) {
+  # Checking if input is numeric; if not, converting it to numeric
+  if (!is.numeric(num)) {
+    num <- as.numeric(num)
+  }
+  # Checking if input is positive; if not, showing relevant error
+  if (num < 0) {
+    stop("number must be positive")
+  }
+  # Checking if input is an integer; if not, showing relevant error
+  if (num != floor(num)) {
+    stop("number must be an integer")
+  }
+  result <- list()
+  numOG <- num
+  numReverse <- 0
+  
+  # Mathematical way of reversing a number
+  while (num > 0) {
+    # Extracting last digit
+    remainder <- num %% 10
+    # Appending it to reverse of the number
+    numReverse <- numReverse * 10 + remainder
+    # Discarding the last digit in the original number
+    num <- num %/% 10
+  }
+  
+  if (numReverse == numOG) {
+    result["isPalindromic"] = TRUE
+    result["reversed"] = numReverse
+  }
+  else{
+    result["isPalindromic"] = FALSE
+    result["reversed"] = numReverse
+  }
+  return(result)
+}
+```
+*Attribution of Source:* Asked UM GPT for better way to check if a number is an integer instead of using is.integer() function.
+```{r}
+#' Function to get the next palindromic number strictly greater than the input 
+#'
+#' @param num positive integer input
+#'
+#' @return vector containing the next palindromic number
+nextPalindrome <- function(num) {
+  # Checking if input is numeric; if not, converting it to numeric
+  if (!is.numeric(num)) {
+    num <- as.numeric(num)
+  }
+  # Checking if input is positive; if not, showing relevant error
+  if (num < 0) {
+    stop("number must be positive")
+  }
+  # Checking if input is an integer; if not, showing relevant error
+  if (num != floor(num)) {
+    stop("number must be an integer")
+  }
+  # We need a number strictly greater than the input.
+  # In some cases the input itself might be a palindrome.
+  # To avoid that, we start checking with the number after the input
+  num <- num + 1
+  # While the number is not a palindrome,
+  while (isPalindromic(num)["isPalindromic"] == FALSE) {
+    # Go to the next number
+    num <- num + 1
+  }
+  return (c(num))
+}
+```
+Finding the next palindrome for each of the following
+```{r}
+nextPalindrome(391)
+nextPalindrome(9928)
+nextPalindrome(19272719)
+nextPalindrome(109)
+nextPalindrome(2)
+```
+*Attribution of Source:* Asked ChatGPT if a single digit number can be called a palindrome. It can be.
