@@ -47,7 +47,9 @@ The correlation coefficient (r) between alcohol content and color intensity of w
 # Spliting the data frame based on wine classes
 # This returns a list of 3 lists grouped on the 3 wine classes
 splitWine <- split(wine, wine$wineClass)
-
+```
+*Attribution of Source:* Asked UM GPT to suggest ways to split dataset by groups to enable me to apply correlation function to each.
+```{r}
 # Using lapply to calculate correlation between alcohol and color intensity for each list generated above.
 #' Anonymous function to calculate correlation
 #' @param splitWineList list (subset of the original dataset) containing samples of same class 
@@ -89,6 +91,9 @@ groupAverage <- aggregate(. ~ wineClass, wine, mean)
 groupAverage <- groupAverage[, -1]
 # Binding row-wise, the two dataframes obtained above
 averagesTable <- rbind(overallAverageDf, groupAverage)
+```
+*Attribution of Source:* Asked UM GPT to suggest ways to get average of all variables by group and for ways to combine and display the table of averages.
+```{r}
 print(averagesTable)
 ```
 The table above lists the overall as well group-wise averages for each variable.
@@ -104,5 +109,131 @@ print(test13)
 test23 <- t.test(splitWine[[2]]$totalPhenols, splitWine[[3]]$totalPhenols)
 print(test23)
 ```
+*Attribution of Source:* Asked UM GPT for inbuilt function to calculate t-test.
 
 ## Problem 2 - AskAManager.org Data
+```{r}
+# Importing data
+salary = read.csv("data/AskAManager.csv")
+# Re-assigning names to columns
+names(salary) <- c(
+  "index",
+  "timestamp",
+  "age",
+  "industry",
+  "jobTitle",
+  "jobDescription",
+  "annualSalary",
+  "bonus",
+  "currency",
+  "otherCurrency",
+  "additionalDescription",
+  "country",
+  "state",
+  "city",
+  "overallExperience",
+  "fieldExperience",
+  "levelOfEducation",
+  "gender",
+  "race"
+)
+print(names(salary))
+```
+Number of samples in original dataset
+```{r}
+print(nrow(salary))
+
+# Choosing samples that have salary in USD
+salaryRestricted <- salary[salary$currency == "USD",]
+```
+Number of samples in restricted dataset (less than the original)
+```{r}
+print(nrow(salaryRestricted))
+```
+Cleaning based on age and experience
+```{r}
+# Need to look at all the possible values for age, overall experience and field experience
+print(table(salaryRestricted$age))
+print(table(salaryRestricted$overallExperience))
+print(table(salaryRestricted$fieldExperience))
+```
+Mapping range values to numeric values for age, overall experience and field experience
+```{r}
+#' Function to map age values given in range to minimum limit of the range in numeric format
+#'
+#' @param ageRanges takes column of age values from the dataset
+#'
+#' @return column of mapped/factored age values in numeric format
+mapAge <- function(ageRanges) {
+  ageFactors <- c(
+    "under 18" = 0,
+    "18-24" = 18,
+    "25-34" = 25,
+    "35-44" = 35,
+    "45-54" = 45,
+    "55-64" = 55,
+    "65 or over" = 65
+  )
+  return(as.numeric(ageFactors[ageRanges]))
+}
+
+#' Function to map experience values given in range to maximum limit of the range in numeric format
+#'
+#' @param experienceRanges takes column of overall or field experience values from the dataset
+#'
+#' @return column of mapped/factored experience values in numeric format
+mapExperience <- function(experienceRanges) {
+  experienceFactors <- c(
+    "1 year or less" = 1,
+    "2 - 4 years" = 4,
+    "5-7 years" = 7,
+    "8 - 10 years" = 10,
+    "11 - 20 years" = 20,
+    "21 - 30 years" = 30,
+    "31 - 40 years" = 40,
+    "41 years or more" = 41
+  )
+  return(as.numeric(experienceFactors[experienceRanges]))
+}
+```
+*Attribution of Source:* Asked UM GPT to suggest ways to factor character ranges to numeric values.
+
+Mapping/Factoring columns
+```{r}
+salaryRestricted$minAge <- sapply(salaryRestricted$age, mapAge)
+salaryRestricted$maxOverallExperience <- sapply(salaryRestricted$overallExperience, mapExperience)
+salaryRestricted$maxFieldExperience <- sapply(salaryRestricted$fieldExperience, mapExperience)
+```
+Cleaning data for impossible age and experience combinations
+```{r}
+salaryCleaned <- salaryRestricted[salaryRestricted$minAge >= 18 &
+                                    salaryRestricted$maxOverallExperience <= (salaryRestricted$minAge - 18) &
+                                    salaryRestricted$maxFieldExperience <= (salaryRestricted$minAge - 18), ]
+```
+Number of samples in cleaned dataset (less than the restricted)
+```{r}
+print(nrow(salaryCleaned))
+```
+Visualizing salaries to understand the trends
+```{r}
+summary(salaryCleaned$annualSalary)
+boxplot(salaryCleaned$annualSalary, main = "Annual Salary")
+```
+From summary and box plot of the annual salaries, we can identify some extreme values. Salaries equal to 0 USD might be a mistake or we might have to consider what the person has written in additional description field. Salaries as high as 3000000 USD are possible but rare. Thus it would be safe to restrict lower limit to a little less than the 1st Quartile value, say 30,000 USD and the upper limit to a bit more than the 3rd Quartile value, say 300,000 USD. This assumption is based on summary statistics, plots and my personal intuition. To further justify it or modify it, we can look into sources such as US Bureau of Labor Statistics <https://www.bls.gov/>. However I have not chosen to do that as the dataset covers jobs from many different industries and many different positions which makes the task difficult.
+```{r}
+minThreshold <- 30000
+maxThreshold <- 300000
+salaryFinal <- salaryCleaned[salaryCleaned$annualSalary >= minThreshold &
+                               salaryCleaned$annualSalary <= maxThreshold, ]
+```
+Number of samples in final dataset (less than the cleaned)
+```{r}
+print(nrow(salaryFinal))
+```
+Final summary statistics and box plot
+```{r}
+summary(salaryFinal$annualSalary)
+boxplot(salaryFinal$annualSalary, main = "Annual Salary")
+```
+
+## Problem 3 - Palindromic Numbers 
