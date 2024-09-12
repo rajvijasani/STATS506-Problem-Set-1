@@ -502,7 +502,7 @@ mean of x mean of y
 <span id="cb48-19"><a href="#cb48-19" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
 <span id="cb48-20"><a href="#cb48-20" aria-hidden="true" tabindex="-1"></a>  numOG <span class="ot">&lt;-</span> num</span>
 <span id="cb48-21"><a href="#cb48-21" aria-hidden="true" tabindex="-1"></a>  numReverse <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb48-22"><a href="#cb48-22" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb48-22"><a href="#cb48-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb48-23"><a href="#cb48-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Mathematical way of reversing a number</span></span>
 <span id="cb48-24"><a href="#cb48-24" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> (num <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
 <span id="cb48-25"><a href="#cb48-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extracting last digit</span></span>
@@ -512,17 +512,21 @@ mean of x mean of y
 <span id="cb48-29"><a href="#cb48-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Discarding the last digit in the original number</span></span>
 <span id="cb48-30"><a href="#cb48-30" aria-hidden="true" tabindex="-1"></a>    num <span class="ot">&lt;-</span> num <span class="sc">%/%</span> <span class="dv">10</span></span>
 <span id="cb48-31"><a href="#cb48-31" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb48-32"><a href="#cb48-32" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb48-33"><a href="#cb48-33" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (numReverse <span class="sc">==</span> numOG) {</span>
-<span id="cb48-34"><a href="#cb48-34" aria-hidden="true" tabindex="-1"></a>    result[<span class="st">"isPalindromic"</span>] <span class="ot">=</span> <span class="cn">TRUE</span></span>
-<span id="cb48-35"><a href="#cb48-35" aria-hidden="true" tabindex="-1"></a>    result[<span class="st">"reversed"</span>] <span class="ot">=</span> numReverse</span>
+<span id="cb48-32"><a href="#cb48-32" aria-hidden="true" tabindex="-1"></a>  <span class="co"># To handle cases with trailing zeros because </span></span>
+<span id="cb48-33"><a href="#cb48-33" aria-hidden="true" tabindex="-1"></a>  <span class="co"># I have used mathematical approach of reversing a number</span></span>
+<span id="cb48-34"><a href="#cb48-34" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">nchar</span>(<span class="fu">as.character</span>(numOG))<span class="sc">!=</span><span class="fu">nchar</span>(<span class="fu">as.character</span>(numReverse))) {</span>
+<span id="cb48-35"><a href="#cb48-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">warning</span>(<span class="st">"Your input has trailing zeros. The computed reverse might not be accurate"</span>)</span>
 <span id="cb48-36"><a href="#cb48-36" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb48-37"><a href="#cb48-37" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>{</span>
-<span id="cb48-38"><a href="#cb48-38" aria-hidden="true" tabindex="-1"></a>    result[<span class="st">"isPalindromic"</span>] <span class="ot">=</span> <span class="cn">FALSE</span></span>
+<span id="cb48-37"><a href="#cb48-37" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (numReverse <span class="sc">==</span> numOG) {</span>
+<span id="cb48-38"><a href="#cb48-38" aria-hidden="true" tabindex="-1"></a>    result[<span class="st">"isPalindromic"</span>] <span class="ot">=</span> <span class="cn">TRUE</span></span>
 <span id="cb48-39"><a href="#cb48-39" aria-hidden="true" tabindex="-1"></a>    result[<span class="st">"reversed"</span>] <span class="ot">=</span> numReverse</span>
 <span id="cb48-40"><a href="#cb48-40" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb48-41"><a href="#cb48-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
-<span id="cb48-42"><a href="#cb48-42" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb48-41"><a href="#cb48-41" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>{</span>
+<span id="cb48-42"><a href="#cb48-42" aria-hidden="true" tabindex="-1"></a>    result[<span class="st">"isPalindromic"</span>] <span class="ot">=</span> <span class="cn">FALSE</span></span>
+<span id="cb48-43"><a href="#cb48-43" aria-hidden="true" tabindex="-1"></a>    result[<span class="st">"reversed"</span>] <span class="ot">=</span> numReverse</span>
+<span id="cb48-44"><a href="#cb48-44" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb48-45"><a href="#cb48-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb48-46"><a href="#cb48-46" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><em>Attribution of Source:</em> Asked UM GPT for better way to check if a number is an integer instead of using is.integer() function.</p>
 <div class="cell">
@@ -563,18 +567,956 @@ mean of x mean of y
 <pre><code>[1] 393</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nextPalindrome</span>(<span class="dv">9928</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate</code></pre>
+</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 9999</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nextPalindrome</span>(<span class="dv">19272719</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nextPalindrome</span>(<span class="dv">19272719</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate
+Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate</code></pre>
+</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 19277291</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nextPalindrome</span>(<span class="dv">109</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nextPalindrome</span>(<span class="dv">109</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in isPalindromic(num): Your input has trailing zeros. The computed
+reverse might not be accurate</code></pre>
+</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 111</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nextPalindrome</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nextPalindrome</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3</code></pre>
 </div>
