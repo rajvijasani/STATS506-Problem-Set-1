@@ -272,15 +272,15 @@ isPalindromic <- function(num) {
   # To handle cases with trailing zeros because 
   # I have used mathematical approach of reversing a number
   if (nchar(as.character(numOG))!=nchar(as.character(numReverse))) {
-    warning("Your input has trailing zeros. The computed reverse might not be accurate")
+    result["warning"] <- "Your input has trailing zeros. The computed reverse might not be accurate"
   }
   if (numReverse == numOG) {
-    result["isPalindromic"] = TRUE
-    result["reversed"] = numReverse
+    result["isPalindromic"] <- TRUE
+    result["reversed"] <- numReverse
   }
   else{
-    result["isPalindromic"] = FALSE
-    result["reversed"] = numReverse
+    result["isPalindromic"] <- FALSE
+    result["reversed"] <- numReverse
   }
   return(result)
 }
